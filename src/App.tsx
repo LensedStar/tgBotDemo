@@ -1,6 +1,7 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import './App.css';
-import pig from "../src/img/pig.jpg"
+//@ts-ignore
+import pig from "./pig.jpg"
 
 //@ts-ignore
 const tg = window.Telegram.WebApp;
@@ -12,11 +13,33 @@ function App() {
   const handleClose =()=>{
     tg.close()
   }
+  const [coins,setCoins] = useState<number>(1)
+  const [farm,setFarm] = useState<boolean>(false)
+    useEffect(() => {
+        if (farm && coins<100) {
+            const intervalId = setInterval(() => {
+                setCoins(prevCount => prevCount + 5);
+            }, 2000);
+            return () => clearInterval(intervalId);
+        }
+    }, [farm]);
+ const handleBuy=()=>{
+     if(!farm && coins >= 30) {
+         setCoins((p)=>p-30)
+         setFarm(true)
+     }
+     else return
+ }
   return (
     <div className="App">
-      <img src={pig} />
+      <p>Coins:{coins}</p>
+      <img onClick={()=>setCoins(coins+10)} className="piggi" src={pig}/>
       <button onClick={()=>handleClose()}>Close</button>
+       <button onClick={()=>handleBuy()}>Buy Farm cost:30coins</button>
+
+
     </div>
+
   );
 }
 
