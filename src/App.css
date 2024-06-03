@@ -3,6 +3,7 @@ body{
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: #ffffff;
 }
 
 .App{
@@ -18,3 +19,4 @@ body{
   width: auto;
   margin-bottom: 20px;
 }
+
