@@ -22,7 +22,7 @@ function App() {
             }, 2000);
             return () => clearInterval(intervalId);
         }
-    }, [farm]);
+    }, [farm,coins]);
  const handleBuy=()=>{
      if(!farm && coins >= 30) {
          setCoins((p)=>p-30)
@@ -33,7 +33,7 @@ function App() {
   return (
     <div className="App">
       <p>Coins:{coins}</p>
-      <img onClick={()=>setCoins(coins+10)} className="piggi" src={pig}/>
+      <img alt="pig" onClick={()=>setCoins(coins+10)} className="piggi" src={pig}/>
       <button onClick={()=>handleClose()}>Close</button>
        <button onClick={()=>handleBuy()}>Buy Farm cost:30coins</button>
 
